@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.api.auth.AuthMapper">
+  <select id="selectUserInfo" resultType="java.util.HashMap">
+    /* AuthMapper.xml - selectUserInfo */
+    SELECT a.user_id                        AS username
+         , a.user_name                      AS user_name
+         , b.login_pw                        AS password
+         , date_format(a.in_dtm, '%Y-%m-%d') as in_dtm
+         , b.login_yn
+    FROM tb_user a
+           INNER JOIN tb_login b
+                      ON b.login_id = a.user_id
+    WHERE a.user_id = #{user_id}
+      AND b.login_yn = 'Y'
+  </select>
+
+  <update id="updateRefreshToken"
+          parameterType="com.example.demo.api.auth.LoginVO">
+    /* AuthMapper.xml - updateRefreshToken */
+    UPDATE tb_login
+    SET refresh_token = #{refresh_token}
+      , login_dtm     = NOW()
+      , up_dtm        = NOW()
+      , up_id         = #{user_id}
+    WHERE login_id = #{user_id}
+      AND login_yn = 'A'
+  </update>
+
+  <select id="selectUserRefreshToken" parameterType="com.example.demo.api.auth.LoginVO" resultType="com.example.demo.api.auth.LoginVO">
+    /* AuthMapper.xml - selectUserRefreshToken */
+    SELECT a.user_id
+         , a.user_name
+         , b.login_pw   AS password
+    FROM tb_user a
+           INNER JOIN tb_login b
+                      ON b.login_id = a.user_id
+    WHERE b.login_yn = 'Y'
+      AND refresh_token = #{refresh_token}
+  </select>
+
+</mapper>
