@@ -1,0 +1,48 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+**/src/main/java/com/example/demo/common/utill/CryptoUtil.java
+**/src/main/java/com/example/demo/config/JasyptConfig.java
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+/src/main/resources/application-security.yml
+/logs/
+/BOOT-INF/
+.temp-admin-classpath-arg-1658903644690.txt
+.temp-admin-classpath-arg-1658972584557.txt
+.temp-admin-classpath-arg-1658996236797.txt
+.temp-admin-classpath-arg-1659487531521.txt
+.temp-admin-classpath-arg-1659576479283.txt
+.temp-Application (1)-classpath-arg-1660109917684.txt
